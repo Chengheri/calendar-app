@@ -1,0 +1,210 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --text-color: #333;
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --border-color: #e1e1e1;
+  --accent-color: #9b59b6;
+  --quote-color: #7f8c8d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+input, select {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Print styles */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0.5cm;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 14pt;
+    background-color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  .container, .AppContainer {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Hide non-printable elements */
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Quote styling for print */
+  #quote-container {
+    margin: 0 0 0.8rem 0 !important;
+    padding: 1rem !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    text-align: center !important;
+    page-break-inside: avoid !important;
+    background-color: white !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  #quote-container * {
+    color: black !important;
+  }
+  
+  #quote-container [class*="Quote"] {
+    font-size: 16pt !important;
+    font-style: italic !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  #quote-container [class*="Author"] {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+  }
+  
+  /* Calendar styles for printing */
+  #printable-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    page-break-inside: avoid !important;
+  }
+  
+  #printable-calendar {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Calendar day cells */
+  #printable-calendar [class*="DayCell"] {
+    min-height: 120px !important;
+    height: 120px !important;
+    border: 1px solid #ccc !important;
+    background-color: white !important;
+  }
+  
+  #printable-calendar [class*="DayCell"][istoday="true"] {
+    background-color: #e3f2fd !important;
+  }
+
+  /* Calendar header */
+  #printable-calendar [class*="CalendarHeader"] {
+    padding: 1rem !important;
+    font-size: 24pt !important;
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    text-align: center !important;
+  }
+
+  /* Calendar grid */
+  #printable-calendar [class*="CalendarGrid"] {
+    font-size: 14pt !important;
+  }
+  
+  /* Weekday headers */
+  #printable-calendar [class*="WeekdayHeader"] {
+    padding: 0.75rem !important;
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    background-color: #f1f1f1 !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  /* Day numbers */
+  #printable-calendar [class*="DayNumber"] {
+    font-size: 16pt !important;
+    font-weight: bold !important;
+    color: #333 !important;
+    padding: 0.25rem !important;
+  }
+}
+
+/* Styles for when we're generating the PDF */
+body.printing {
+  background-color: white;
+  height: 100%;
+  overflow: hidden;
+}
+
+body.printing #printable-content {
+  position: relative;
+  background-color: white;
+  max-width: 200mm; /* Match the print width */
+  margin: 0 auto;
+}
+
+body.printing #quote-container {
+  position: relative;
+  background-color: white;
+  max-width: 200mm; /* Match the print width */
+  margin: 0 auto 0.8rem auto;
+}
+
+body.printing .no-print {
+  display: none !important;
+}
+
+body.printing #quote-container {
+  margin-bottom: 0.8rem;
+}
+
+body.printing #printable-calendar {
+  margin-top: 0.3rem;
+} 
